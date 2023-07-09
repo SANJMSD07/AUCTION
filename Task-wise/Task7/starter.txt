@@ -1,0 +1,29 @@
+
+    if (newBid === undefined || newBid == "undefined" || newBid == "null") {
+        console.log("new bid is missing");
+        res.send("new bid is missing");
+        return;     
+    }
+
+    if (newBidUser === undefined || newBidUser == "undefined" || newBidUser == "null") {
+        console.log("new bid user is missing");
+        res..send("new bid user is missing");
+        return;
+    }
+
+    const match = dbJson.find(item => item.id == id);
+
+    if (match == undefined)  {
+        console.log("invalid or missing item ID");
+        res.send("invalid or missing item ID");
+        return;
+    }
+
+    if (match.lastBid >= newBid) {
+        console.log("Bid is not high enough");
+        res.send("Bid is not high enough");
+        return;
+    }
+
+    match.lastBid = newBid;
+    match.lastBidUser = newBidUser;
